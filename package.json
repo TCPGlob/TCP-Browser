@@ -1,0 +1,56 @@
+{
+  "name": "tcp-browser",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "description": "A privacy-focused browser front-end that proxies, sanitises and renders web pages without trackers, ads or telemetry.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "browser",
+    "privacy",
+    "adblock",
+    "tracker-blocker",
+    "reader-mode",
+    "proxy",
+    "react",
+    "express"
+  ],
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "start": "node dist/server.cjs",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "lint": "tsc --noEmit",
+    "test": "node scripts/smoke-test.mjs && node scripts/check-host-injection.mjs",
+    "test:smoke": "node scripts/smoke-test.mjs",
+    "test:host": "node scripts/check-host-injection.mjs",
+    "test:prod": "node scripts/check-production.mjs",
+    "test:python": "python -m py_compile tcp_desktop_app.py",
+    "verify": "npm run lint && npm test",
+    "icons": "node scripts/generate-icons.mjs"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "jszip": "^3.10.2",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.4",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3"
+  }
+}

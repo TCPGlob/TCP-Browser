@@ -1,0 +1,24 @@
+# Normalise line endings so the same commit works on Windows, macOS and Linux.
+* text=auto eol=lf
+
+# Windows batch files must keep CRLF or cmd.exe mis-parses them.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Shell scripts must keep LF or they fail with "bad interpreter".
+*.sh text eol=lf
+
+# Binary assets - never touch these.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.zip binary
+
+# Keep lockfiles and minified output out of diffs and language stats.
+package-lock.json linguist-generated=true -diff
+dist/** linguist-generated=true
